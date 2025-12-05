@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
     // 构建时忽略ESLint错误
     ignoreDuringBuilds: true,
   },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals = {
+        '@prisma/client': '@prisma/client',
+      };
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
