@@ -1,141 +1,235 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# 📧 Email Routing Manager
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+A comprehensive Cloudflare email routing management system built with Next.js 15, TypeScript, and Supabase. This application provides a secure and intuitive dashboard for managing email forwarding rules through Cloudflare's Email Routing API.
 
-## ✨ Technology Stack
+## ✨ Features
 
-This scaffold provides a robust foundation built with:
+### 🎯 Core Functionality
+- **📧 Email Routing Management** - Create, view, and delete email forwarding rules
+- **🌐 Multi-Domain Support** - Manage email routing for multiple Cloudflare domains
+- **🔐 Secure Authentication** - Simple yet effective login system with remember me functionality
+- **🌍 Internationalization** - Full support for Indonesian and English languages
+- **🎨 Dark/Light Mode** - Beautiful UI with seamless theme switching
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+### 🛠️ Technical Features
+- **⚡ Next.js 15** - Latest React framework with App Router
+- **📘 TypeScript** - Type-safe development experience
+- **🗄️ Supabase Integration** - Cloud-native PostgreSQL database
+- **🎨 Tailwind CSS + shadcn/ui** - Modern, responsive UI components
+- **🔒 Secure API Integration** - Safe Cloudflare API token management
+- **📱 Mobile Responsive** - Optimized for all device sizes
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+### 🚀 Advanced Features
+- **🤖 Auto-Generated Emails** - Indonesian name-based email aliases with random suffixes
+- **📋 Configuration Dashboard** - Centralized API key and destination email management
+- **📊 Real-time Statistics** - Live tracking of email routing rules and domains
+- **🔄 Auto-refresh** - Automatic configuration status checking
+- **📋 Copy to Clipboard** - Quick email address copying functionality
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+## 🏗️ Technology Stack
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+### Frontend
+- **Next.js 15** with App Router
+- **TypeScript 5** for type safety
+- **Tailwind CSS 4** for styling
+- **shadcn/ui** component library
+- **Lucide React** icons
+- **Framer Motion** animations
+- **React Hook Form + Zod** validation
+- **Next Themes** for dark mode
+- **Next Intl** for internationalization
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+### Backend & Database
+- **Supabase** (PostgreSQL) for data storage
+- **Prisma ORM** for database operations
+- **Cloudflare Email Routing API** integration
+- **Next.js API Routes** for backend logic
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
-
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
-
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+### Authentication & Security
+- **Custom authentication system** with secure token management
+- **JWT-based session handling**
+- **Secure API key storage** in database
+- **Input validation** and sanitization
 
 ## 🚀 Quick Start
 
+### Prerequisites
+- Node.js 18+ installed
+- Supabase account and project
+- Cloudflare account with Email Routing enabled
+
+### 1. Clone and Install
 ```bash
-# Install dependencies
+git clone <repository-url>
+cd email-routing-manager
 npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+### 2. Environment Setup
+Create a `.env` file in the root directory:
 
-## 🤖 Powered by Z.ai
+```env
+# Database Configuration
+DATABASE_URL="file:./dev.db"
+SUPABASE_DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=https://[YOUR-PROJECT-REF].supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+# Authentication
+JWT_SECRET=your_jwt_secret_key_here
+NEXTAUTH_SECRET=your_nextauth_secret_here
+NEXTAUTH_URL=http://localhost:3000
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+# Cloudflare API Configuration
+CLOUDFLARE_API_TOKEN=your_cloudflare_api_token
+CLOUDFLARE_ACCOUNT_ID=your_cloudflare_account_id
+CLOUDFLARE_D1_DATABASE=your_cloudflare_d1_database
+CLOUDFLARE_WORKER_API=your_cloudflare_worker_api
+CLOUDFLARE_KV_STORAGE=your_cloudflare_kv_storage
+
+# Application Configuration
+NODE_ENV=development
+PORT=3000
+```
+
+### 3. Database Setup
+```bash
+# Generate Prisma client
+npx prisma generate
+
+# Push schema to Supabase
+npx prisma db push
+```
+
+### 4. Run Development Server
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to access the application.
+
+## 🔧 Configuration
+
+### Supabase Setup
+1. Create a new Supabase project
+2. Get your project URL and anon keys from Supabase dashboard
+3. Update the `.env` file with your Supabase credentials
+4. Run `npx prisma db push` to create the database tables
+
+### Cloudflare Setup
+1. Create a Cloudflare API token with Email Routing permissions
+2. Get your Account ID from Cloudflare dashboard
+3. Navigate to the Config page in the application
+4. Enter your Cloudflare credentials to enable email routing
 
 ## 📁 Project Structure
 
 ```
 src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+├── app/                    # Next.js App Router pages
+│   ├── api/               # API routes
+│   │   ├── cloudflare/    # Cloudflare integration endpoints
+│   │   └── email-routing/ # Email routing management
+│   ├── dashboard/         # Main dashboard pages
+│   ├── login/            # Authentication page
+│   └── layout.tsx       # Root layout with providers
+├── components/            # Reusable React components
+│   ├── ui/              # shadcn/ui components
+│   └── language-selector.tsx
+├── contexts/             # React contexts
+│   └── auth-context.tsx
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility functions
+│   ├── db.ts           # Database configuration
+│   ├── supabase.ts     # Supabase client setup
+│   ├── translations.ts # Internationalization
+│   └── cloudflare-api.ts # Cloudflare API helpers
+└── prisma/             # Database schema and migrations
+    └── schema.prisma
 ```
 
-## 🎨 Available Features & Components
+## 🎨 Features Overview
 
-This scaffold includes a comprehensive set of modern web development tools:
+### Authentication System
+- **Login Credentials**: Username: `windaa`, Password: `cantik`
+- **Remember Me**: Persistent sessions with customizable duration
+- **Secure Storage**: Tokens stored securely with expiration handling
+- **Auto-redirect**: Intelligent routing based on authentication status
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+### Email Routing Management
+- **Auto-generation**: Indonesian name-based email aliases
+- **Manual creation**: Custom email aliases
+- **Domain selection**: Support for multiple Cloudflare domains
+- **Destination management**: Predefined and custom destination emails
+- **Real-time updates**: Live synchronization with Cloudflare API
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+### Configuration Dashboard
+- **API Key Management**: Secure storage of Cloudflare credentials
+- **Destination Emails**: Management of forwarding email addresses
+- **Status Monitoring**: Real-time configuration status checking
+- **Security Features**: Hidden API keys with show/hide functionality
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+### User Interface
+- **Responsive Design**: Optimized for desktop, tablet, and mobile
+- **Dark Mode**: Seamless theme switching with system preference detection
+- **Internationalization**: Full Indonesian and English language support
+- **Accessibility**: WCAG compliant components with keyboard navigation
+- **Micro-interactions**: Smooth animations and transitions
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+## 🔒 Security Features
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+- **Secure API Key Storage**: All credentials encrypted in database
+- **Input Validation**: Comprehensive validation using Zod schemas
+- **CSRF Protection**: Built-in Next.js CSRF protection
+- **Session Management**: Secure token-based authentication
+- **API Rate Limiting**: Protection against API abuse
+- **HTTPS Enforcement**: Secure communication protocols
 
-## 🤝 Get Started with Z.ai
+## 📊 Database Schema
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+The application uses three main tables:
+
+1. **users** - Authentication and user management
+2. **email_routing** - Email forwarding rules and configurations
+3. **cloudflare_config** - API credentials and settings
+
+## 🚀 Deployment
+
+### Production Build
+```bash
+npm run build
+npm start
+```
+
+### Environment Variables for Production
+Ensure all environment variables are properly configured in your hosting environment:
+- Supabase credentials
+- JWT secrets
+- Cloudflare API tokens
+- Application URLs
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🆘 Support
+
+For support and questions:
+- Create an issue in the repository
+- Check the documentation
+- Review the FAQ section
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+Built with ❤️ using Next.js 15, TypeScript, and Supabase.
