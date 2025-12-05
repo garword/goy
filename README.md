@@ -55,25 +55,30 @@ A comprehensive Cloudflare email routing management system built with Next.js 15
 
 ### Prerequisites
 - Node.js 18+ installed
-- Supabase account and project
+- Supabase account and project (optional, can use SQLite)
 - Cloudflare account with Email Routing enabled
 
 ### 1. Clone and Install
 ```bash
-git clone <repository-url>
-cd email-routing-manager
+git clone https://github.com/garword/goy.git
+cd goy
 npm install
 ```
 
 ### 2. Environment Setup
-Create a `.env` file in the root directory:
+Copy the example environment file:
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` file with your credentials:
 
 ```env
 # Database Configuration
 DATABASE_URL="file:./dev.db"
 SUPABASE_DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres
 
-# Supabase Configuration
+# Supabase Configuration (optional - for production)
 NEXT_PUBLIC_SUPABASE_URL=https://[YOUR-PROJECT-REF].supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
@@ -100,7 +105,7 @@ PORT=3000
 # Generate Prisma client
 npx prisma generate
 
-# Push schema to Supabase
+# Push schema to database (SQLite for development, Supabase for production)
 npx prisma db push
 ```
 
@@ -113,17 +118,51 @@ Open [http://localhost:3000](http://localhost:3000) to access the application.
 
 ## 🔧 Configuration
 
-### Supabase Setup
+### Supabase Setup (Optional)
 1. Create a new Supabase project
 2. Get your project URL and anon keys from Supabase dashboard
-3. Update the `.env` file with your Supabase credentials
-4. Run `npx prisma db push` to create the database tables
+3. Update `.env` file with your Supabase credentials
+4. Run `npx prisma db push` to create database tables
 
 ### Cloudflare Setup
 1. Create a Cloudflare API token with Email Routing permissions
 2. Get your Account ID from Cloudflare dashboard
-3. Navigate to the Config page in the application
+3. Navigate to to Config page in the application
 4. Enter your Cloudflare credentials to enable email routing
+
+## 🚀 Deployment
+
+### Deploy to Vercel
+
+1. **Prepare Environment Variables**:
+   - Go to Vercel dashboard
+   - Add all environment variables from `.env` file
+   - Set `NODE_ENV=production`
+   - Update `NEXTAUTH_URL` to your Vercel domain
+
+2. **Deploy**:
+   ```bash
+   # Install Vercel CLI
+   npm i -g vercel
+   
+   # Deploy
+   vercel --prod
+   ```
+
+3. **Post-Deployment Setup**:
+   - Configure environment variables in Vercel dashboard
+   - Ensure database is accessible (use Supabase for production)
+   - Test all functionality
+
+### Manual Deployment
+
+```bash
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
 
 ## 📁 Project Structure
 
@@ -196,20 +235,27 @@ The application uses three main tables:
 2. **email_routing** - Email forwarding rules and configurations
 3. **cloudflare_config** - API credentials and settings
 
-## 🚀 Deployment
+## 🔧 Troubleshooting
 
-### Production Build
+### Common Issues
+
+1. **Prisma Client Error**: Run `npx prisma generate` before build
+2. **Database Connection**: Check `DATABASE_URL` in `.env` file
+3. **API Errors**: Verify Cloudflare credentials and permissions
+4. **Build Failures**: Ensure all environment variables are set
+
+### Development Tips
+
 ```bash
-npm run build
-npm start
-```
+# Reset database
+npm run db:reset
 
-### Environment Variables for Production
-Ensure all environment variables are properly configured in your hosting environment:
-- Supabase credentials
-- JWT secrets
-- Cloudflare API tokens
-- Application URLs
+# View database logs
+npm run db:push --verbose
+
+# Generate Prisma client
+npm run db:generate
+```
 
 ## 🤝 Contributing
 
@@ -229,6 +275,10 @@ For support and questions:
 - Create an issue in the repository
 - Check the documentation
 - Review the FAQ section
+
+## 🔗 Live Demo
+
+Coming soon! The application is currently in development.
 
 ---
 
